@@ -1,0 +1,107 @@
+/* Simple PayPal Recurring Donation Plugin Styles */
+
+.sprdntplgn_presets_container,
+.sprdntplgn_off-off_container,
+.sprdntplgn_bespoke_container {
+    margin-bottom: -1em;
+}
+
+.sprdntplgn_amount_box {
+	display: flex;
+	justify-content: flex-start;
+    max-width: 10em;
+    margin-left: 0.6em;
+}
+
+.sprdntplgn_amount {
+	max-width: 8em;
+	flex: 1 1 7em;
+    border: 1px solid #ccc;
+	height: 3em;
+	line-height: 2.5;
+	border-radius: 0 3px 3px 0;
+}
+
+.sprdntplgn_currency {
+    /*color: #000;*/
+	padding: 0 0.5em 0 0.5em;
+	border: 1px solid #ccc;
+	border-right: 0;
+	line-height: 2.5;
+	border-radius: 3px 0 0 3px;
+}
+
+.sprdntplgn select{
+    margin: 1em;
+    width: 10em;
+    border: 1px solid #ccc;
+	height: 3em;
+	border-radius: 3px;
+}
+
+.sprdntplgn input[type=submit]{
+    margin: 1em;
+    margin-bottom: 0;
+    width: 10em;
+    border: 1px solid #ccc;
+	height: 3.33em;
+	border-radius: 3px;
+}
+
+.sprdntplgn_container {
+    max-width: 40em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.sprdntplgn_presets_container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+}
+.sprdntplgn_preset {
+    flex-basis: 10em;
+}
+
+.sprdntplgn_separator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sprdntplgn_one-off_display_items {
+    display: flex;
+    /*flex-wrap: wrap;*/
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.sprdntplgn_bespoke_display_items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.sprdntplgn_section_item {
+    flex-basis: 10em;
+}
+
+.sprdntplgn select:disabled {
+    color: #ccc;
+}
+
+/* Styling for admin console */
+
+.sprdntplgn_error_message span{
+    color: red;
+}
+
+/* Generic Styles */
+
+.clear {
+    clear: both;
+}
