@@ -68,8 +68,9 @@ if ( ! function_exists( 'sprdntplgn_settings_page' ) ) {
                     
                     //Save paypal email address
                     if ( isset( $_POST['sprdntplgn_paypal_account'] ) ) {
-                            if ( is_email( $_POST['sprdntplgn_paypal_account'] ) ) {
-                                    $sprdntplgn_options['sprdntplgn_paypal_email'] = $_POST['sprdntplgn_paypal_account'];
+                            $sprdntplgn_paypal_account = sanitize_email( $_POST['sprdntplgn_paypal_account'] );
+                            if ( is_email( $sprdntplgn_paypal_account ) ) {
+                                    $sprdntplgn_options['sprdntplgn_paypal_email'] = $sprdntplgn_paypal_account;
                             } else {
                                     $error_message = __( 'Email is incorrect', 'sprdonateplugin' );
                             }
@@ -107,60 +108,60 @@ if ( ! function_exists( 'sprdntplgn_settings_page' ) ) {
                 
 		?>
 		<div class="wrap">
-		    <h2><?php _e( 'SPR Dontations Plugin', 'sprdonateplugin' ); ?></h2>
+		    <h2><?php esc_html_e( 'SPR Dontations Plugin', 'sprdonateplugin' ); ?></h2>
 		    
 		    <div id="poststuff"><div id="post-body">			
-			<?php if ( $message != '' && isset( $_POST['sprdntplgn_submit'] ) && is_email( $_POST['sprdntplgn_paypal_account'] ) ) { ?>
+			<?php if ( $message != '' && isset( $_POST['sprdntplgn_submit'] ) && is_email( sanitize_email( $_POST['sprdntplgn_paypal_account'] ) ) ) { ?>
 				<div class="updated fade">
-					<p><strong><?php echo $message; ?></strong></p>
+					<p><strong><?php echo esc_html( $message ); ?></strong></p>
 				</div>
-			<?php } elseif ( '' != $error_message && ! is_email( $_POST['sprdntplgn_paypal_account'] ) ) { ?> 
+			<?php } elseif ( '' != $error_message && ! is_email( sanitize_email( $_POST['sprdntplgn_paypal_account'] ) ) ) { ?> 
 				<div class="error">
-					<p><strong><?php echo $error_message; ?></strong></p>
+					<p><strong><?php echo esc_html ($error_message ); ?></strong></p>
 				</div>
 			<?php } ?>
                         
 			<div class="postbox">
-    			<h3 class="hndle"><label for="title"><?php _e( 'Quick Usage Guide', 'sprdonateplugin' ); ?></label></h3>
+    			<h3 class="hndle"><label for="title"><?php esc_html_e( 'Quick Usage Guide', 'sprdonateplugin' ); ?></label></h3>
     			<div class="inside">
     			    <div class="sprdntplgn_description_shortcode_block">
-    				    <p><?php _e( 'You can use the [sprdntplgn] shortcode in a WordPress post, page or sidebar text widget to show the recurring donation form. With no options, it will show the bespoke recurring donation form.', 'sprdonateplugin' ); ?></p>
-    				    <p><?php _e( 'Alternatively, you can use the following parameters to customise the form/widget.', 'sprdonateplugin' ); ?></p>
+    				    <p><?php esc_html_e( 'You can use the [sprdntplgn] shortcode in a WordPress post, page or sidebar text widget to show the recurring donation form. With no options, it will show the bespoke recurring donation form.', 'sprdonateplugin' ); ?></p>
+    				    <p><?php esc_html_e( 'Alternatively, you can use the following parameters to customise the form/widget.', 'sprdonateplugin' ); ?></p>
     				    <dl>
     				        <dt>item_name</dt>
     				        <dd>
-    				            <?php _e( 'This will show as the description at PayPal, make it something people will recognise.', 'sprdonateplugin' ); ?><br />
+    				            <?php esc_html_e( 'This will show as the description at PayPal, make it something people will recognise.', 'sprdonateplugin' ); ?><br />
     				            e.g. <code>[sprdntplgn item_name="Donations to My Charity"]</code><br />
-    				            <?php _e( 'Specifying this in the shortcode overides any default description set below.', 'sprdonateplugin' ); ?>
+    				            <?php esc_html_e( 'Specifying this in the shortcode overides any default description set below.', 'sprdonateplugin' ); ?>
     				        </dd>
     				        <dt>bespoke</dt>
     				        <dd>
     				            <code>[none|simple|advanced]</code><br />
     				            <dl>
     				                <dt>none</dt>
-    				                <dd><?php _e( 'No option will be given for the customer to provide their own amount, only preset amounts will be shown.', 'sprdonateplugin' ); ?>  <?php _e( 'If no presets are specified, no form will be shown.', 'sprdonateplugin' ); ?></dd>
+    				                <dd><?php esc_html_e( 'No option will be given for the customer to provide their own amount, only preset amounts will be shown.', 'sprdonateplugin' ); ?>  <?php esc_html_e( 'If no presets are specified, no form will be shown.', 'sprdonateplugin' ); ?></dd>
     				                <dt>simple</dt>
-    				                <dd><?php _e( 'The customer may specify only an amount.  That amount will be taken every month.', 'sprdonateplugin' ); ?></dd>
+    				                <dd><?php esc_html_e( 'The customer may specify only an amount.  That amount will be taken every month.', 'sprdonateplugin' ); ?></dd>
     				                <dt>advanced</dt>
-    				                <dd><?php _e( 'The default. This option allows the customer to specify how much, how often and for how long they will be billed.', 'sprdonateplugin' ); ?></dd>
+    				                <dd><?php esc_html_e( 'The default. This option allows the customer to specify how much, how often and for how long they will be billed.', 'sprdonateplugin' ); ?></dd>
     				            </dl>
     				        </dd>
     				        <dt>presets</dt>
     				        <dd>
-    				            <?php _e( 'These create buttons which offer shortcuts to dontaing preset amounts over a preset time.', 'sprdonateplugin' ); ?><br />
+    				            <?php esc_html_e( 'These create buttons which offer shortcuts to dontaing preset amounts over a preset time.', 'sprdonateplugin' ); ?><br />
     				            e.g. <code>[sprdtnplgn presets="5.00:M|7.50:M|10.00:M"]</code>
-    				            <?php _e( 'would create 3 buttons, one for 5.00 per month, one for 7.50 per month and one for 10,00 per month.', 'sprdonateplugin' ); ?><br />
-    				            <?php _e( 'The letter may be "W", "M" or "Y" for "per week", "per month" or "per year".', 'sprdonateplugin' ); ?>
-    				            <?php _e( 'If you wish to use only preset buttons remember to set', 'sprdonateplugin' ); ?> <code>bespoke=false</code>
+    				            <?php esc_html_e( 'would create 3 buttons, one for 5.00 per month, one for 7.50 per month and one for 10,00 per month.', 'sprdonateplugin' ); ?><br />
+    				            <?php esc_html_e( 'The letter may be "W", "M" or "Y" for "per week", "per month" or "per year".', 'sprdonateplugin' ); ?>
+    				            <?php esc_html_e( 'If you wish to use only preset buttons remember to set', 'sprdonateplugin' ); ?> <code>bespoke=false</code>
     				        </dd>
     				        <dt>one-off</dt>
     				        <dd>
     				            <code>[1|0]</code>
-    				            <?php _e( 'Defaults to "0".', 'sprdonateplugin' ); ?><br />
-    				            <?php _e( 'When set to "1" offers the customer a chance to make a one-off payment of an amount of their choice.', 'sprdonateplugin' ); ?>
+    				            <?php esc_html_e( 'Defaults to "0".', 'sprdonateplugin' ); ?><br />
+    				            <?php esc_html_e( 'When set to "1" offers the customer a chance to make a one-off payment of an amount of their choice.', 'sprdonateplugin' ); ?>
     				        </dd>
     				    </dl>
-    				    <p><?php _e( 'All other settings are global and specified below.', 'sprdonateplugin' ); ?></p>
+    				    <p><?php esc_html_e( 'All other settings are global and specified below.', 'sprdonateplugin' ); ?></p>
     			    </div>
     			</div>
 			</div>
@@ -171,17 +172,17 @@ if ( ! function_exists( 'sprdntplgn_settings_page' ) ) {
         			<form id="sprdntplgn_settings_form" method='post' action=''>
         			    <input type='hidden' id='sprdnt_tab_paypal' name='sprdnt_tab_paypal' value='1' />
         			    <fieldset>
-        			        <legend><?php _e('Basic Settings', 'sprdonateplugin' ); ?></legend>
+        			        <legend><?php esc_html_e('Basic Settings', 'sprdonateplugin' ); ?></legend>
         				    <label>
-        				        <?php _e( 'Your PayPal Account Email Address', 'sprdonateplugin' ); ?>
-        				        <input type='text' name='sprdntplgn_paypal_account' size='70' id='sprdntplgn_paypal_account' value="<?php if ( '' != $sprdntplgn_options['sprdntplgn_paypal_email'] ) echo $sprdntplgn_options['sprdntplgn_paypal_email']; ?>" placeholder ="<?php _e( 'The donation will go to this PayPal account.', 'sprdonateplugin' ); ?>" />
+        				        <?php esc_html_e( 'Your PayPal Account Email Address', 'sprdonateplugin' ); ?>
+        				        <input type='text' name='sprdntplgn_paypal_account' size='70' id='sprdntplgn_paypal_account' value="<?php if ( '' != $sprdntplgn_options['sprdntplgn_paypal_email'] ) esc_html( sanitize_email( $sprdntplgn_options['sprdntplgn_paypal_email'] ) ); ?>" placeholder ="<?php esc_html_e( 'The donation will go to this PayPal account.', 'sprdonateplugin' ); ?>" />
         				    </label><br />
         				    <label>
-        				        <?php _e( 'Default Description', 'sprdonateplugin' ); ?> (<?php _e( 'May be overidden in the shortcode', 'sprdonateplugin' ); ?>)
-        				        <input type='text' name='sprdntplgn_item_name' size='70' id='sprdntplgn_item_name' value="<?php if ( '' != $sprdntplgn_options['sprdntplgn_item_name'] ) echo $sprdntplgn_options['sprdntplgn_item_name']; ?>" placeholder ="<?php _e( 'Donation to My Charity.', 'sprdonateplugin' ); ?>" />
+        				        <?php esc_html_e( 'Default Description', 'sprdonateplugin' ); ?> (<?php esc_html_e( 'May be overidden in the shortcode', 'sprdonateplugin' ); ?>)
+        				        <input type='text' name='sprdntplgn_item_name' size='70' id='sprdntplgn_item_name' value="<?php if ( '' != $sprdntplgn_options['sprdntplgn_item_name'] ) echo esc_html( $sprdntplgn_options['sprdntplgn_item_name'] ); ?>" placeholder ="<?php esc_html_e( 'Donation to My Charity.', 'sprdonateplugin' ); ?>" />
         				    </label><br />
         				    <label>
-        				        <?php _e( 'Currency Code', 'sprdonateplugin' ); ?> (<?php _e( 'All donations will be paid in this currency.', 'sprdonateplugin' ); ?>)
+        				        <?php esc_html_e( 'Currency Code', 'sprdonateplugin' ); ?> (<?php esc_html_e( 'All donations will be paid in this currency.', 'sprdonateplugin' ); ?>)
                                 <select id="sprdntplgn_payment_currency" name="sprdntplgn_payment_currency">
                                     <option value="EUR" <?php echo ($sprdntplgn_payment_currency == 'EUR') ? 'selected="selected"' : ''; ?>>Euros (EUR)</option>
                                     <option value="GBP" <?php echo ($sprdntplgn_payment_currency == 'GBP') ? 'selected="selected"' : ''; ?>>Pounds Sterling (GBP)</option>
@@ -217,49 +218,49 @@ if ( ! function_exists( 'sprdntplgn_settings_page' ) ) {
                                 </select>
                             </label><br />
                             <label>
-                                <?php _e( 'Currency Symbol', 'sprdonateplugin' ); ?> (<?php _e( 'This symbol is shown next to the monetary values.', 'sprdonateplugin' ); ?>)
-                                <input type='text' name='sprdntplgn_currency_symbol' size='10' id='sprdntplgn_currency_symbol' value="<?php if ( '' != $sprdntplgn_currency_symbol ) echo $sprdntplgn_currency_symbol; else echo '£'; ?>" />
+                                <?php esc_html_e( 'Currency Symbol', 'sprdonateplugin' ); ?> (<?php esc_html_e( 'This symbol is shown next to the monetary values.', 'sprdonateplugin' ); ?>)
+                                <input type='text' name='sprdntplgn_currency_symbol' size='10' id='sprdntplgn_currency_symbol' value="<?php if ( '' != $sprdntplgn_currency_symbol ) echo esc_html( $sprdntplgn_currency_symbol ); else echo '£'; ?>" />
                             </label>
                         </fieldset>
                         <fieldset>
-                            <legend><?php _e( 'Return behaviour', 'sprdonateplugin' ); ?></legend>
-                            <p><?php _e( 'Once subscription set up is complete (or abandonned) at PayPal, the customer returns to one of these two URLs.  If none are specified, the customer returns to your homepage.  The "Return URL" should be your thank you page.', 'sprdonateplugin' ); ?></p>
+                            <legend><?php esc_html_e( 'Return behaviour', 'sprdonateplugin' ); ?></legend>
+                            <p><?php esc_html_e( 'Once subscription set up is complete (or abandonned) at PayPal, the customer returns to one of these two URLs.  If none are specified, the customer returns to your homepage.  The "Return URL" should be your thank you page.', 'sprdonateplugin' ); ?></p>
                             <label>
-                                <?php _e( 'Return URL', 'sprdonateplugin' ); ?> (<?php _e( 'PayPal will send the user to this page after the payment.', 'sprdonateplugin' ); ?>)
-                                <input type='text' name='sprdntplgn_return_url' size='70' id='sprdntplgn_return_url' value="<?php echo $sprdntplgn_return_url; ?>" />
+                                <?php esc_html_e( 'Return URL', 'sprdonateplugin' ); ?> (<?php esc_html_e( 'PayPal will send the user to this page after the payment.', 'sprdonateplugin' ); ?>)
+                                <input type='text' name='sprdntplgn_return_url' size='70' id='sprdntplgn_return_url' value="<?php echo esc_html( $sprdntplgn_return_url ); ?>" />
                             </label><br />
                             <label>
-                                <?php _e( 'Cancel URL', 'sprdonateplugin' ); ?> (<?php _e( 'PayPal will send the user to this page if the user clicks on the cancel link on the PayPal checkout page.', 'sprdonateplugin' ); ?>)
-                                <input type='text' name='sprdntplgn_cancel_return' size='70' id='sprdntplgn_cancel_return' value="<?php echo $sprdntplgn_cancel_return; ?>" />
+                                <?php esc_html_e( 'Cancel URL', 'sprdonateplugin' ); ?> (<?php esc_html_e( 'PayPal will send the user to this page if the user clicks on the cancel link on the PayPal checkout page.', 'sprdonateplugin' ); ?>)
+                                <input type='text' name='sprdntplgn_cancel_return' size='70' id='sprdntplgn_cancel_return' value="<?php echo esc_html( $sprdntplgn_cancel_return ); ?>" />
                             </label>
                         </fieldset>
                         <fieldset>
-                            <legend><?php _e( 'Labels', 'sprdonateplugin' ); ?></legend>
-                            <p><?php _e( 'The short labels are used on buttons, the long labels are used on the advanced bespoke form.', 'sprdonateplugin' ); ?></p>
+                            <legend><?php esc_html_e( 'Labels', 'sprdonateplugin' ); ?></legend>
+                            <p><?php esc_html_e( 'The short labels are used on buttons, the long labels are used on the advanced bespoke form.', 'sprdonateplugin' ); ?></p>
                             <table>
                                 <tr>
                                     <th>&nbsp;</th>
-                                    <th><?php _e( 'Short Label', 'sprdonateplugin' ); ?></th>
-                                    <th><?php _e( 'Long Label', 'sprdonateplugin' ); ?></th>
+                                    <th><?php esc_html_e( 'Short Label', 'sprdonateplugin' ); ?></th>
+                                    <th><?php esc_html_e( 'Long Label', 'sprdonateplugin' ); ?></th>
                                 </tr>
                                 <tr>
-                                    <th><?php _e( 'Weekly', 'sprdonateplugin' ); ?></th>
-                                    <td><input type="text" name="sprdntplgn_pw_label" size="30" id="sprdntplgn_pw_label" value="<?php if ( '' !=  $sprdntplgn_pw_label ) echo $sprdntplgn_pw_label; else echo '(p/w)'; ?>" /></td>
-                                    <td><input type="text" name="sprdntplgn_pw_label_long" size="30" id="sprdntplgn_pw_label_long" value="<?php if ( '' !=  $sprdntplgn_pw_label_long ) echo $sprdntplgn_pw_label_long; else echo 'per week'; ?>" /></td>
+                                    <th><?php esc_html_e( 'Weekly', 'sprdonateplugin' ); ?></th>
+                                    <td><input type="text" name="sprdntplgn_pw_label" size="30" id="sprdntplgn_pw_label" value="<?php if ( '' !=  $sprdntplgn_pw_label ) echo esc_html( $sprdntplgn_pw_label ); else echo '(p/w)'; ?>" /></td>
+                                    <td><input type="text" name="sprdntplgn_pw_label_long" size="30" id="sprdntplgn_pw_label_long" value="<?php if ( '' !=  $sprdntplgn_pw_label_long ) echo esc_html( $sprdntplgn_pw_label_long ); else echo 'per week'; ?>" /></td>
                                 </tr>
                                 <tr>
-                                    <th><?php _e( 'Monthly', 'sprdonateplugin' ); ?></th>
-                                    <td><input type="text" name="sprdntplgn_pm_label" size="30" id="sprdntplgn_pm_label" value="<?php if ( '' !=  $sprdntplgn_pm_label ) echo $sprdntplgn_pm_label; else echo '(p/m)'; ?>" /></td>
-                                    <td><input type="text" name="sprdntplgn_pm_label_long" size="30" id="sprdntplgn_pm_label_long" value="<?php if ( '' !=  $sprdntplgn_pm_label_long ) echo $sprdntplgn_pm_label_long; else echo 'per month'; ?>" /></td>
+                                    <th><?php esc_html_e( 'Monthly', 'sprdonateplugin' ); ?></th>
+                                    <td><input type="text" name="sprdntplgn_pm_label" size="30" id="sprdntplgn_pm_label" value="<?php if ( '' !=  $sprdntplgn_pm_label ) echo esc_html( $sprdntplgn_pm_label ); else echo '(p/m)'; ?>" /></td>
+                                    <td><input type="text" name="sprdntplgn_pm_label_long" size="30" id="sprdntplgn_pm_label_long" value="<?php if ( '' !=  $sprdntplgn_pm_label_long ) echo esc_html( $sprdntplgn_pm_label_long ); else echo 'per month'; ?>" /></td>
                                 </tr>
                                 <tr>
-                                    <th><?php _e( 'Annually', 'sprdonateplugin' ); ?></th>
-                                    <td><input type="text" name="sprdntplgn_py_label" size="30" id="sprdntplgn_py_label" value="<?php if ( '' !=  $sprdntplgn_py_label ) echo $sprdntplgn_py_label; else echo '(p/a)'; ?>" /></td>
-                                    <td><input type="text" name="sprdntplgn_py_label_long" size="30" id="sprdntplgn_py_label_long" value="<?php if ( '' !=  $sprdntplgn_py_label_long ) echo $sprdntplgn_py_label_long; else echo 'per year'; ?>" /></td>
+                                    <th><?php esc_html_e( 'Annually', 'sprdonateplugin' ); ?></th>
+                                    <td><input type="text" name="sprdntplgn_py_label" size="30" id="sprdntplgn_py_label" value="<?php if ( '' !=  $sprdntplgn_py_label ) echo esc_html( $sprdntplgn_py_label ); else echo '(p/a)'; ?>" /></td>
+                                    <td><input type="text" name="sprdntplgn_py_label_long" size="30" id="sprdntplgn_py_label_long" value="<?php if ( '' !=  $sprdntplgn_py_label_long ) echo esc_html( $sprdntplgn_py_label_long ); else echo 'per year'; ?>" /></td>
                                 </tr>
                             </table>
                         </fieldset>
-                        <p><input type="submit" name="sprdntplgn_submit" value="<?php _e( 'Save changes', 'sprdonateplugin' ); ?>" class="button-primary" /></p>
+                        <p><input type="submit" name="sprdntplgn_submit" value="<?php esc_html_e( 'Save changes', 'sprdonateplugin' ); ?>" class="button-primary" /></p>
                         <?php wp_nonce_field( plugin_basename( __FILE__ ), 'sprdntplgn_nonce_name' ); ?>
                     </form>
     			</div>
@@ -293,30 +294,33 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		), $atts );
                 
         // Set Currency code
-            $sprdntplgn_currency_code = ( '' != $sprdntplgn_options['sprdntplgn_payment_currency'] ) ? $sprdntplgn_options['sprdntplgn_payment_currency'] : 'GBP';
+            $sprdntplgn_currency_code = ( '' != $sprdntplgn_options['sprdntplgn_payment_currency'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_payment_currency'] ) : 'GBP';
 
         // Set Currency Symbol
-            $sprdntplgn_currency_symbol = ( '' != $sprdntplgn_options['sprdntplgn_currency_symbol'] ) ? $sprdntplgn_options['sprdntplgn_currency_symbol'] : '£';
+            $sprdntplgn_currency_symbol = ( '' != $sprdntplgn_options['sprdntplgn_currency_symbol'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_currency_symbol'] ) : '£';
 
         // Set Return URL
-            $sprdntplgn_return_url = ( '' != $sprdntplgn_options['sprdntplgn_return_url'] ) ? $sprdntplgn_options['sprdntplgn_return_url'] : SPRDNTPLGN_SITE_HOME_URL;
+            $sprdntplgn_return_url = ( '' != $sprdntplgn_options['sprdntplgn_return_url'] ) ? esc_url( $sprdntplgn_options['sprdntplgn_return_url'] ) : esc_url( SPRDNTPLGN_SITE_HOME_URL );
 
         // Set Cancel Return URL
-            $sprdntplgn_cancel_return = ( '' != $sprdntplgn_options['sprdntplgn_cancel_return'] ) ? $sprdntplgn_options['sprdntplgn_cancel_return'] : SPRDNTPLGN_SITE_HOME_URL;
+            $sprdntplgn_cancel_return = ( '' != $sprdntplgn_options['sprdntplgn_cancel_return'] ) ? esc_url( $sprdntplgn_options['sprdntplgn_cancel_return'] ) : esc_url( SPRDNTPLGN_SITE_HOME_URL );
             
         // Set Description
-            $sprdntplgn_item_name = ( '' != $sprdntplgn_options['sprdntplgn_item_name'] ) ? $sprdntplgn_options['sprdntplgn_item_name'] : "Donation to " . get_bloginfo( 'name' );
+            $sprdntplgn_item_name = ( '' != $sprdntplgn_options['sprdntplgn_item_name'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_item_name'] ) : "Donation to " . get_bloginfo( 'name' );
             if ( '' != $sprdntplgn_atts['item_name'] ) {
-                $sprdntplgn_item_name = sanitize_text_field( $sprdntplgn_atts['item_name'] );
+                $sprdntplgn_item_name = esc_html( sanitize_text_field( $sprdntplgn_atts['item_name'] ) );
             }
 
+        // Escape stored values
+            $sprdntplgn_paypal_email = esc_html( sanitize_email( $sprdntplgn_options['sprdntplgn_paypal_email'] ) );
+
         // Labels
-            $sprdntplgn_pw_label = isset( $sprdntplgn_options['sprdntplgn_pw_label'] ) ? $sprdntplgn_options['sprdntplgn_pw_label'] : '(p/w)';
-            $sprdntplgn_pm_label = isset( $sprdntplgn_options['sprdntplgn_pm_label'] ) ? $sprdntplgn_options['sprdntplgn_pm_label'] : '(p/m)';
-            $sprdntplgn_py_label = isset( $sprdntplgn_options['sprdntplgn_py_label'] ) ? $sprdntplgn_options['sprdntplgn_py_label'] : '(p/a)';
-            $sprdntplgn_pw_label_long = isset( $sprdntplgn_options['sprdntplgn_pw_label_long'] ) ? $sprdntplgn_options['sprdntplgn_pw_label_long'] : 'per week';
-            $sprdntplgn_pm_label_long = isset( $sprdntplgn_options['sprdntplgn_pm_label_long'] ) ? $sprdntplgn_options['sprdntplgn_pm_label_long'] : 'per month';
-            $sprdntplgn_py_label_long = isset( $sprdntplgn_options['sprdntplgn_py_label_long'] ) ? $sprdntplgn_options['sprdntplgn_py_label_long'] : 'per year';
+            $sprdntplgn_pw_label = isset( $sprdntplgn_options['sprdntplgn_pw_label'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_pw_label'] ) : '(p/w)';
+            $sprdntplgn_pm_label = isset( $sprdntplgn_options['sprdntplgn_pm_label'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_pm_label'] ) : '(p/m)';
+            $sprdntplgn_py_label = isset( $sprdntplgn_options['sprdntplgn_py_label'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_py_label'] ) : '(p/a)';
+            $sprdntplgn_pw_label_long = isset( $sprdntplgn_options['sprdntplgn_pw_label_long'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_pw_label_long'] ) : 'per week';
+            $sprdntplgn_pm_label_long = isset( $sprdntplgn_options['sprdntplgn_pm_label_long'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_pm_label_long'] ) : 'per month';
+            $sprdntplgn_py_label_long = isset( $sprdntplgn_options['sprdntplgn_py_label_long'] ) ? esc_html( $sprdntplgn_options['sprdntplgn_py_label_long'] ) : 'per year';
         
 
         // Begin form
@@ -325,7 +329,7 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 
 		// Check for preset settings as these are displayed first
 		if ( '' != $sprdntplgn_atts['presets'] ) { ?>
-		    <p class="sprdntplgn sprdntplgn_separator"><?php _e( 'Choose a preset amount', 'sprdonateplugin' ); ?></p>
+		    <p class="sprdntplgn sprdntplgn_separator"><?php esc_html_e( 'Choose a preset amount', 'sprdonateplugin' ); ?></p>
 		    <div class="sprdntplgn sprdntplgn_presets_container">
 		    <?php
 		    // There are presets, split them up into arrays and process them
@@ -355,17 +359,17 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		        <div class="sprdntplgn sprdntplgn_preset">
 		            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		                <input type="hidden" name="cmd" value="_xclick-subscriptions">
-		                <input type="hidden" name="business" value="<?php echo $sprdntplgn_options['sprdntplgn_paypal_email']; ?>" />
+		                <input type="hidden" name="business" value="<?php echo $sprdntplgn_paypal_email; ?>" />
 					    <input type="hidden" name="item_name" value="<?php echo $sprdntplgn_item_name; ?>">
 					    <input type="hidden" name="no_note" value="1">
 					    <input type="hidden" name="currency_code" value="<?php echo $sprdntplgn_currency_code; ?>">
                         <input type="hidden" name="return" value="<?php echo $sprdntplgn_return_url; ?>">
                         <input type="hidden" name="cancel_return" value="<?php echo $sprdntplgn_cancel_return; ?>" />
-                        <input type="hidden" name="a3" value="<?php echo $sprdntplgn_preset_details[0]; ?>">
-                        <input type="hidden" name="t3" value="<?php echo $sprdntplgn_preset_details[1]; ?>">
+                        <input type="hidden" name="a3" value="<?php echo esc_html( $sprdntplgn_preset_details[0] ); ?>">
+                        <input type="hidden" name="t3" value="<?php echo esc_html( $sprdntplgn_preset_details[1] ); ?>">
     		            <input type="hidden" name="p3" value="1">
     		            <input type="hidden" name="src" value="1">
-    		            <input class="sprdntplgn sprdntplgn_preset_button" type="submit" name="submit"  value="<?php echo $sprdntplgn_currency_symbol . $sprdntplgn_preset_details[0] . ' ' . $sprdntplgn_preset_label; ?>" title="<?php _e(  'Donate', 'sprdonateplugin'  ); echo ' ' . $sprdntplgn_currency_symbol . $sprdntplgn_preset_details[0] . ' ' . $sprdntplgn_preset_label_long; ?>" aria-label="<?php _e(  'Donate', 'sprdonateplugin'  ); echo ' ' . $sprdntplgn_currency_symbol . $sprdntplgn_preset_details[0] . ' ' . $sprdntplgn_preset_label_long; ?>"/>
+    		            <input class="sprdntplgn sprdntplgn_preset_button" type="submit" name="submit"  value="<?php echo $sprdntplgn_currency_symbol . es_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label; ?>" title="<?php esc_html_e( 'Donate', 'sprdonateplugin' ); echo ' ' . $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label_long; ?>" aria-label="<?php esc_html_e(  'Donate', 'sprdonateplugin'  ); echo ' ' . $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label_long; ?>"/>
 				        <img alt="PayPal - The safer, easier way to pay online!" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 				    </form>
 		        </div>
@@ -377,12 +381,12 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		if ( '' != $sprdntplgn_atts['presets'] && 'none' != $sprdntplgn_atts['bespoke'] ) {
 		    ?><div class="sprdntplgn sprdntplgn_separator">
                 <p class="sprdntplgn sprdntplgn_separator">
-		            <span>&mdash; <?php _e( 'or', 'sprdonateplugin' ); ?> &mdash;<br /></span>
+		            <span>&mdash; <?php esc_html_e( 'or', 'sprdonateplugin' ); ?> &mdash;<br /></span>
 		            <?php
 		            if ( 'simple' == $sprdntplgn_atts['bespoke'] ) { ?>
-		                <span><?php _e( 'Give an amount of your choice per month', 'sprdonateplugin' ); ?></span>
+		                <span><?php esc_html_e( 'Give an amount of your choice per month', 'sprdonateplugin' ); ?></span>
 		            <?php } else { ?>
-		                <span><?php _e( 'Give an amount of your choice, as often as you choose', 'sprdonateplugin' ); ?></span>
+		                <span><?php esc_html_e( 'Give an amount of your choice, as often as you choose', 'sprdonateplugin' ); ?></span>
 		            <?php } ?>
 	            </p>
 		    </div><?php
@@ -392,15 +396,15 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		if ( 'none' != $sprdntplgn_atts['bespoke'] ) {
 		    if ( '' == $sprdntplgn_atts['presets'] ) {
 		        if ( 'simple' == $sprdntplgn_atts['bespoke'] ) { ?>
-		            <p class="sprdntplgn sprdntplgn_separator"><?php _e( 'Give an amount of your choice per month', 'sprdonateplugin' ); ?></p>
+		            <p class="sprdntplgn sprdntplgn_separator"><?php esc_html_e( 'Give an amount of your choice per month', 'sprdonateplugin' ); ?></p>
 		        <?php } elseif ( 'advanced' == $sprdntplgn_atts['bespoke'] ) { ?>
-		            <p class="sprdntplgn sprdntplgn_separator"><?php _e( 'Give an amount of your choice, as often as you choose', 'sprdonateplugin' ); ?></p>
+		            <p class="sprdntplgn sprdntplgn_separator"><?php esc_html_e( 'Give an amount of your choice, as often as you choose', 'sprdonateplugin' ); ?></p>
 		        <?php }
 		    } ?>
 		    <div class="sprdntplgn sprdntplgn_bespoke_container">
 		        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		            <input type="hidden" name="cmd" value="_xclick-subscriptions">
-		            <input type="hidden" name="business" value="<?php echo $sprdntplgn_options['sprdntplgn_paypal_email']; ?>" />
+		            <input type="hidden" name="business" value="<?php echo $sprdntplgn_paypal_email; ?>" />
 					<input type="hidden" name="item_name" value="<?php echo $sprdntplgn_item_name; ?>">
 					<input type="hidden" name="no_note" value="1">
 					<input type="hidden" name="currency_code" value="<?php echo $sprdntplgn_currency_code; ?>">
@@ -411,7 +415,7 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
                         <div class="sprdntplgn sprdntplgn_section_item">
                             <div class="sprdntplgn sprdntplgn_amount_box">
 	                            <span class="sprdntplgn sprdntplgn_currency"><?php echo $sprdntplgn_currency_symbol; ?></span>
-	                            <input class="sprdntplgn sprdntplgn_amount sprdntplgn_bespoke_amount" lang="en" type="number" step="0.01" min="1" name="a3" title="<?php _e( 'Enter donation amount', 'sprdonateplugin' );?>" aria-label="<?php _e( 'Enter donation amount', 'sprdonateplugin' );?>" />
+	                            <input class="sprdntplgn sprdntplgn_amount sprdntplgn_bespoke_amount" lang="en" type="number" step="0.01" min="1" name="a3" title="<?php esc_html_e( 'Enter donation amount', 'sprdonateplugin' );?>" aria-label="<?php esc_html_e( 'Enter donation amount', 'sprdonateplugin' );?>" />
                             </div>
                         </div>
     		<?php if ( 'simple' == $sprdntplgn_atts['bespoke'] ) { ?>
@@ -420,7 +424,7 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
     		        <input type="hidden" name="src" value="1">
     		<?php } elseif ( 'advanced' == $sprdntplgn_atts['bespoke'] ) { ?>
     		            <div class="sprdntplgn sprdntplgn_section_item">
-	                        <select class="sprdntplgn sprdntplgn_bespoke_advanced_t3" id="sprdntplgn_bespoke_advanced_t3" name="t3" title="<?php _e( 'Select frequency of donation', 'sprdonateplugin' ); ?>" aria-label="<?php _e( 'Select frequency of donation', 'sprdonateplugin' ); ?>">
+	                        <select class="sprdntplgn sprdntplgn_bespoke_advanced_t3" id="sprdntplgn_bespoke_advanced_t3" name="t3" title="<?php esc_html_e( 'Select frequency of donation', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Select frequency of donation', 'sprdonateplugin' ); ?>">
 	                            <option value="W"><?php echo $sprdntplgn_pw_label_long; ?></option>
 	                            <option value="M" selected><?php echo $sprdntplgn_pm_label_long; ?></option>
 	                            <option value="Y"><?php echo $sprdntplgn_py_label_long; ?></option>
@@ -429,32 +433,32 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
                     </div>
                     <div class="sprdntplgn sprdntplgn sprdntplgn_bespoke_display_items">
                         <div class="sprdntplgn sprdntplgn_section_item">
-                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_src" id="sprdntplgn_bespoke_advanced_src" name="src" title="<?php _e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>" aria-label="<?php _e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>">
-                                <option value="1" selected><?php _e( 'indefinitely', 'sprdonateplugin' ); ?></option>
-                                <option value="0"><?php _e( 'for', 'sprdonateplugin' ); ?></option>
+                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_src" id="sprdntplgn_bespoke_advanced_src" name="src" title="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>">
+                                <option value="1" selected><?php esc_html_e( 'indefinitely', 'sprdonateplugin' ); ?></option>
+                                <option value="0"><?php esc_html_e( 'for', 'sprdonateplugin' ); ?></option>
                             </select>
                         </div>
                         <div class="sprdntplgn sprdntplgn_section_item">
-                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_p3" id="sprdntplgn_bespoke_advanced_p3" name="p3" title="<?php _e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>" aria-label="<?php _e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>">
-                                <option value="1" selected><?php _e( '1', 'sprdonateplugin' ); ?> <?php _e( 'payment', 'sprdonateplugin' ); ?></option>
-                                <option value="2"><?php _e( '2', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="3"><?php _e( '3', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="4"><?php _e( '4', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="5"><?php _e( '5', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="6"><?php _e( '6', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="7"><?php _e( '7', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="8"><?php _e( '8', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="9"><?php _e( '9', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="10"><?php _e( '10', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="11"><?php _e( '11', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
-                                <option value="12"><?php _e( '12', 'sprdonateplugin' ); ?> <?php _e( 'payments', 'sprdonateplugin' ); ?></option>
+                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_p3" id="sprdntplgn_bespoke_advanced_p3" name="p3" title="<?php esc_html_e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>">
+                                <option value="1" selected><?php esc_html_e( '1', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payment', 'sprdonateplugin' ); ?></option>
+                                <option value="2"><?php esc_html_e( '2', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="3"><?php esc_html_e( '3', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="4"><?php esc_html_e( '4', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="5"><?php esc_html_e( '5', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="6"><?php esc_html_e( '6', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="7"><?php esc_html_e( '7', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="8"><?php esc_html_e( '8', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="9"><?php esc_html_e( '9', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="10"><?php esc_html_e( '10', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="11"><?php esc_html_e( '11', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
+                                <option value="12"><?php esc_html_e( '12', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
                             </select>
                         </div>
                     </div>
                     <div class="sprdntplgn sprdntplgn sprdntplgn_bespoke_display_items">
     		<?php } ?>
     		            <div class="sprdntplgn sprdntplgn_section_item">
-    		                <input class="sprdntplgn sprdntplgn_bespoke_button" type="submit" name="submit"  value="<?php _e( 'Donate', 'sprdonateplugin' ); ?>" title="<?php _e( 'Make your donation', 'sprdonateplugin' ); ?>" aria-label="<?php _e( 'Make your donation', 'sprdonateplugin' ); ?>" />
+    		                <input class="sprdntplgn sprdntplgn_bespoke_button" type="submit" name="submit"  value="<?php esc_html_e( 'Donate', 'sprdonateplugin' ); ?>" title="<?php esc_html_e( 'Make your donation', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Make your donation', 'sprdonateplugin' ); ?>" />
 				            <img alt="PayPal - The safer, easier way to pay online!" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			            </div>
 		            </div>
@@ -466,8 +470,8 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		if ( ( '' != $sprdntplgn_atts['presets'] || 'none' != $sprdntplgn_atts['bespoke'] ) && 1 == $sprdntplgn_atts['one-off'] ) {
 		    ?><div class="sprdntplgn_separator">
 		        <p class="sprdntplgn sprdntplgn_separator">
-		            <span>&mdash; <?php _e( 'or', 'sprdonateplugin' ); ?> &mdash;<br /></span>
-		            <span><?php _e( 'Make a one-off donation', 'sprdonateplugin' ); ?></span>
+		            <span>&mdash; <?php esc_html_e( 'or', 'sprdonateplugin' ); ?> &mdash;<br /></span>
+		            <span><?php esc_html_e( 'Make a one-off donation', 'sprdonateplugin' ); ?></span>
 	            </p>
 		    </div><?php
 		}
@@ -475,12 +479,12 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		// Check if there is a one-off to dispaly
 		if ( 1 == $sprdntplgn_atts['one-off'] ) { ?>
 	        <?php if ( '' == $sprdntplgn_atts['presets'] && 'none' == $sprdntplgn_atts['bespoke'] ) { ?>
-	            <p class="sprdntplgn sprdntplgn_separator"><?php _e( 'Make a one-off donation', 'sprdonateplugin' ); ?></p> <?php
+	            <p class="sprdntplgn sprdntplgn_separator"><?php esc_html_e( 'Make a one-off donation', 'sprdonateplugin' ); ?></p> <?php
 	        } ?>		
 		    <div class="sprdntplgn sprdntplgn_off-off_container">
 		        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 		            <input type="hidden" name="cmd" value="_donations">
-					<input type="hidden" name="business" value="<?php echo $sprdntplgn_options['sprdntplgn_paypal_email']; ?>">
+					<input type="hidden" name="business" value="<?php echo $sprdntplgn_paypal_email; ?>">
                     <input type="hidden" name="item_name" value="<?php echo $sprdntplgn_item_name; ?>">
 					<input type="hidden" name="currency_code" value="<?php echo $sprdntplgn_currency_code; ?>">
                     <input type="hidden" name="return" value="<?php echo $sprdntplgn_return_url; ?>">
@@ -490,11 +494,11 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 					    <div class="sprdntplgn sprdntplgn_section_item">
 					        <div class="sprdntplgn sprdntplgn_amount_box">
 	                            <span class="sprdntplgn sprdntplgn_currency"><?php echo $sprdntplgn_currency_symbol; ?></span>
-	                            <input class="sprdntplgn sprdntplgn_amount sprdntplgn_one-off_amount" lang="en" type="number" step="0.01" min="1" name="amount" id="sprdntplgn_one-off_amount" title="<?php _e( 'Enter donation amount', 'sprdonateplugin' );?>" aria-label="<?php _e( 'Enter donation amount', 'sprdonateplugin' );?>" />
+	                            <input class="sprdntplgn sprdntplgn_amount sprdntplgn_one-off_amount" lang="en" type="number" step="0.01" min="1" name="amount" id="sprdntplgn_one-off_amount" title="<?php esc_html_e( 'Enter donation amount', 'sprdonateplugin' );?>" aria-label="<?php esc_html_e( 'Enter donation amount', 'sprdonateplugin' );?>" />
                             </div>
                         </div>
                         <div class="sprdntplgn sprdntplgn_section_item">
-	                        <input class="sprdntplgn sprdntplgn_one-off_button" type="submit" name="submit"  value="<?php _e( 'Donate', 'sprdonateplugin' ); ?>" title="<?php _e( 'Make one time donation', 'sprdonateplugin' ); ?>" aria-label="<?php _e( 'Make one time donation', 'sprdonateplugin' ); ?>" />
+	                        <input class="sprdntplgn sprdntplgn_one-off_button" type="submit" name="submit"  value="<?php esc_html_e( 'Donate', 'sprdonateplugin' ); ?>" title="<?php esc_html_e( 'Make one time donation', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Make one time donation', 'sprdonateplugin' ); ?>" />
 					        <img alt="PayPal - The safer, easier way to pay online!" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 				        </div>
 					</div>
