@@ -117,7 +117,7 @@ if ( ! function_exists( 'sprdntplgn_settings_page' ) ) {
 				</div>
 			<?php } elseif ( '' != $error_message && ! is_email( sanitize_email( $_POST['sprdntplgn_paypal_account'] ) ) ) { ?> 
 				<div class="error">
-					<p><strong><?php echo esc_html ($error_message ); ?></strong></p>
+					<p><strong><?php echo esc_html( $error_message ); ?></strong></p>
 				</div>
 			<?php } ?>
                         
