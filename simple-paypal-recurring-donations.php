@@ -369,7 +369,7 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
                         <input type="hidden" name="t3" value="<?php echo esc_html( $sprdntplgn_preset_details[1] ); ?>">
     		            <input type="hidden" name="p3" value="1">
     		            <input type="hidden" name="src" value="1">
-    		            <input class="sprdntplgn sprdntplgn_preset_button" type="submit" name="submit"  value="<?php echo $sprdntplgn_currency_symbol . es_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label; ?>" title="<?php esc_html_e( 'Donate', 'sprdonateplugin' ); echo ' ' . $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label_long; ?>" aria-label="<?php esc_html_e(  'Donate', 'sprdonateplugin'  ); echo ' ' . $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label_long; ?>"/>
+    		            <input class="sprdntplgn sprdntplgn_preset_button" type="submit" name="submit"  value="<?php echo $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label; ?>" title="<?php esc_html_e( 'Donate', 'sprdonateplugin' ); echo ' ' . $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label_long; ?>" aria-label="<?php esc_html_e(  'Donate', 'sprdonateplugin'  ); echo ' ' . $sprdntplgn_currency_symbol . esc_html( $sprdntplgn_preset_details[0] ) . ' ' . $sprdntplgn_preset_label_long; ?>"/>
 				        <img alt="PayPal - The safer, easier way to pay online!" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 				    </form>
 		        </div>
