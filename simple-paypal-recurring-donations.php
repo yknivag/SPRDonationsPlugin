@@ -175,7 +175,7 @@ if ( ! function_exists( 'sprdntplgn_settings_page' ) ) {
         			        <legend><?php esc_html_e('Basic Settings', 'sprdonateplugin' ); ?></legend>
         				    <label>
         				        <?php esc_html_e( 'Your PayPal Account Email Address', 'sprdonateplugin' ); ?>
-        				        <input type='text' name='sprdntplgn_paypal_account' size='70' id='sprdntplgn_paypal_account' value="<?php if ( '' != $sprdntplgn_options['sprdntplgn_paypal_email'] ) esc_html( sanitize_email( $sprdntplgn_options['sprdntplgn_paypal_email'] ) ); ?>" placeholder ="<?php esc_html_e( 'The donation will go to this PayPal account.', 'sprdonateplugin' ); ?>" />
+        				        <input type='text' name='sprdntplgn_paypal_account' size='70' id='sprdntplgn_paypal_account' value="<?php if ( '' != $sprdntplgn_options['sprdntplgn_paypal_email'] ) echo esc_html( $sprdntplgn_options['sprdntplgn_paypal_email'] ); ?>" placeholder ="<?php esc_html_e( 'The donation will go to this PayPal account.', 'sprdonateplugin' ); ?>" />
         				    </label><br />
         				    <label>
         				        <?php esc_html_e( 'Default Description', 'sprdonateplugin' ); ?> (<?php esc_html_e( 'May be overidden in the shortcode', 'sprdonateplugin' ); ?>)
