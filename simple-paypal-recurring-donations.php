@@ -3,7 +3,7 @@
  * Plugin Name: Simple PayPal Recurring Donations
  * Plugin URI:  https://github.com/yknivag/SPRDonationsPlugin
  * Description: Plugin for accepting recurring PayPal donations via a simple shortcode
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      yknivag
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -362,6 +362,7 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		                <input type="hidden" name="business" value="<?php echo $sprdntplgn_paypal_email; ?>" />
 					    <input type="hidden" name="item_name" value="<?php echo $sprdntplgn_item_name; ?>">
 					    <input type="hidden" name="no_note" value="1">
+                        <input type="hidden" name="rm" value="1">
 					    <input type="hidden" name="currency_code" value="<?php echo $sprdntplgn_currency_code; ?>">
                         <input type="hidden" name="return" value="<?php echo $sprdntplgn_return_url; ?>">
                         <input type="hidden" name="cancel_return" value="<?php echo $sprdntplgn_cancel_return; ?>" />
@@ -407,10 +408,12 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
 		            <input type="hidden" name="business" value="<?php echo $sprdntplgn_paypal_email; ?>" />
 					<input type="hidden" name="item_name" value="<?php echo $sprdntplgn_item_name; ?>">
 					<input type="hidden" name="no_note" value="1">
+                    <input type="hidden" name="rm" value="1">
 					<input type="hidden" name="currency_code" value="<?php echo $sprdntplgn_currency_code; ?>">
                     <input type="hidden" name="return" value="<?php echo $sprdntplgn_return_url; ?>">
                     <input type="hidden" name="cancel_return" value="<?php echo $sprdntplgn_cancel_return; ?>" />
-                    <input class="sprdntplgn sprdntplgn_bespoke_advanced_fixed_p3" type="hidden" name="p3" value="1">
+                    <input type="hidden" name="sra" value="1">
+                    <input type="hidden" name="p3" value="1">
                     <div class="sprdntplgn sprdntplgn sprdntplgn_bespoke_display_items">
                         <div class="sprdntplgn sprdntplgn_section_item">
                             <div class="sprdntplgn sprdntplgn_amount_box">
@@ -435,11 +438,11 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
                         <div class="sprdntplgn sprdntplgn_section_item">
                             <select class="sprdntplgn sprdntplgn_bespoke_advanced_src" id="sprdntplgn_bespoke_advanced_src" name="src" title="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>">
                                 <option value="1" selected><?php esc_html_e( 'indefinitely', 'sprdonateplugin' ); ?></option>
-                                <option value="0"><?php esc_html_e( 'for', 'sprdonateplugin' ); ?></option>
+                                <option value="1"><?php esc_html_e( 'for', 'sprdonateplugin' ); ?></option>
                             </select>
                         </div>
                         <div class="sprdntplgn sprdntplgn_section_item">
-                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_p3" id="sprdntplgn_bespoke_advanced_p3" name="p3" title="<?php esc_html_e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>">
+                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_srt" id="sprdntplgn_bespoke_advanced_srt" name="srt" title="<?php esc_html_e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Select the maximum number of payments', 'sprdonateplugin' ); ?>">
                                 <option value="1" selected><?php esc_html_e( '1', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payment', 'sprdonateplugin' ); ?></option>
                                 <option value="2"><?php esc_html_e( '2', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
                                 <option value="3"><?php esc_html_e( '3', 'sprdonateplugin' ); ?> <?php esc_html_e( 'payments', 'sprdonateplugin' ); ?></option>
