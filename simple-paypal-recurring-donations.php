@@ -3,7 +3,7 @@
  * Plugin Name: Simple PayPal Recurring Donations
  * Plugin URI:  https://github.com/yknivag/SPRDonationsPlugin
  * Description: Plugin for accepting recurring PayPal donations via a simple shortcode
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      yknivag
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
