@@ -2,7 +2,7 @@
 ( function( $ ) {
 	$( document ).ready( function() {
     $( '.sprdntplgn_bespoke_advanced_srt' ).prop( 'disabled', 'disabled' );
-    $( 'select.sprdntplgn_bespoke_advanced_src' ).change( function(){
+    $( 'select.sprdntplgn_bespoke_advanced_for' ).change( function(){
       if( $( this ).children( 'option:selected' ).val() == "0" ) {
         $( '.sprdntplgn_bespoke_advanced_srt' ).prop( 'disabled', false );
       } else {

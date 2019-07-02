@@ -413,6 +413,7 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
                     <input type="hidden" name="return" value="<?php echo $sprdntplgn_return_url; ?>">
                     <input type="hidden" name="cancel_return" value="<?php echo $sprdntplgn_cancel_return; ?>" />
                     <input type="hidden" name="sra" value="1">
+                    <input type="hidden" name="src" value="1">
                     <input type="hidden" name="p3" value="1">
                     <div class="sprdntplgn sprdntplgn sprdntplgn_bespoke_display_items">
                         <div class="sprdntplgn sprdntplgn_section_item">
@@ -424,7 +425,6 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
     		<?php if ( 'simple' == $sprdntplgn_atts['bespoke'] ) { ?>
                     <?php echo $sprdntplgn_pm_label_long; ?>
 	                <input type="hidden" name="t3" value="M">
-    		        <input type="hidden" name="src" value="1">
     		<?php } elseif ( 'advanced' == $sprdntplgn_atts['bespoke'] ) { ?>
     		            <div class="sprdntplgn sprdntplgn_section_item">
 	                        <select class="sprdntplgn sprdntplgn_bespoke_advanced_t3" id="sprdntplgn_bespoke_advanced_t3" name="t3" title="<?php esc_html_e( 'Select frequency of donation', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Select frequency of donation', 'sprdonateplugin' ); ?>">
@@ -436,9 +436,9 @@ if ( ! function_exists ( 'sprdntplgn_show_form' ) ) {
                     </div>
                     <div class="sprdntplgn sprdntplgn sprdntplgn_bespoke_display_items">
                         <div class="sprdntplgn sprdntplgn_section_item">
-                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_src" id="sprdntplgn_bespoke_advanced_src" name="src" title="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>">
+                            <select class="sprdntplgn sprdntplgn_bespoke_advanced_for" id="sprdntplgn_bespoke_advanced_for" name="custom" title="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>" aria-label="<?php esc_html_e( 'Donate indefinitely? Or for a pre-determined time?', 'sprdonateplugin' ); ?>">
                                 <option value="1" selected><?php esc_html_e( 'indefinitely', 'sprdonateplugin' ); ?></option>
-                                <option value="1"><?php esc_html_e( 'for', 'sprdonateplugin' ); ?></option>
+                                <option value="0"><?php esc_html_e( 'for', 'sprdonateplugin' ); ?></option>
                             </select>
                         </div>
                         <div class="sprdntplgn sprdntplgn_section_item">

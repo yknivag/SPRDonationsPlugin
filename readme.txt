@@ -5,7 +5,7 @@ Tags: subscription, donate, donation, paypal, recurring, payment, donations, pay
 Requires PHP: 5.6.0
 Requires at least: 3.0
 Tested up to: 5.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,9 @@ The plugin is simple and requires no backend services to support it, so it costs
 3. Simple "bespoke" section ([sprdntplgn bespoke="simple"])
 
 == Changelog ==
+
+= 1.0.2 =
+* Bug Fix: No of payments field was permanently disabled after 1.0.1 changes.
 
 = 1.0.1 =
 * Bug Fix: No of payments field was setting frequency of payments instead of number and defined time subscriptions would expire after the first payment.
