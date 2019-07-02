@@ -1,10 +1,12 @@
 === Simple PayPal Recurring Donations ===
-Contributors: yknivag 
+Contributors: yknivag, wpecommerce
+Donate link: https://www.paypal.com/gb/fundraiser/charity/3140872
 Tags: subscription, donate, donation, paypal, recurring, payment, donations, paypal donation, button, shortcode, sidebar, widget, monthly
+Requires PHP: 5.6.0
 Requires at least: 3.0
-Tested up to: 5.2.2
-Stable tag: 1.0
-License: GPLv2
+Tested up to: 5.2
+Stable tag: 1.0.0
+License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Accept PayPal recurring donations from your WordPress site easily.
@@ -93,6 +95,12 @@ Yes, you can add multiple Donate Plugin forms on your page or post or text widge
 
 No, all donations will go to the address you specify in the plugin settings.
 
+== Donations ==
+
+This plugin was originally developed to support the work of [Witney Talking News](https://wtn.org.uk), a small charity in the UK delivering a vital service to local people who, due to sight loss, can no longer read the local news and keep in touch with their community.
+
+The plugin is simple and requires no backend services to support it, so it costs me nothing to run.  However if you feel you would like to make donation for using it, please do so to the charity who inspired it using the "Donate to Plugin" link.
+
 == Screenshots ==
 
 1. Basic Implementation with no options ([sprdntplgn])
@@ -101,7 +109,7 @@ No, all donations will go to the address you specify in the plugin settings.
 
 == Changelog ==
 
-= 0.1 =
+= 1.0.0 =
 * Forked from ["The Recurring Donations plugin" by WP eCommerce](https://wp-ecommerce.net/wordpress-recurring-donation-plugin)
 * Options added to format the user display.
 
