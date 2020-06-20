@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/gb/fundraiser/charity/3140872
 Tags: subscription, donate, donation, paypal, recurring, payment, donations, paypal donation, button, shortcode, sidebar, widget, monthly
 Requires PHP: 5.6.0
 Requires at least: 3.0
-Tested up to: 5.2
-Stable tag: 1.0.2
+Tested up to: 5.4
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
